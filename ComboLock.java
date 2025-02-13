@@ -28,7 +28,18 @@ public class ComboLock{
     }
     
     //Initialize the toString() method which will return the state of this class lock
-
+    @Override
+    public String toString()
+    {
+        if(isOpen)
+        {
+            return "Lock with combination " + currentCombination + " is open.";
+        }
+        else 
+        {
+            return "lock with combination" + currentCombination + "is closed.";
+        }
+    }
 
     //I will have a reset combination for lock 
 
