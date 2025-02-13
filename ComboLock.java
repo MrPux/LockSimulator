@@ -69,7 +69,7 @@ public class ComboLock{
         try{
             if(!(position < 3 && position > 0 && newValue < 10 && newValue > 0))
             {
-                throw new IllegalArgumentException("Hey buddy, invalid position or valu.");
+                throw new IllegalArgumentException("Hey buddy, invalid position or value.");
             }
             char[] temp = currentCombination.toCharArray();
             temp[position - 1] = (char) ('0' + newValue);
@@ -91,7 +91,7 @@ public class ComboLock{
         }
         if(!isOpen)
         {
-            System.out.println("he lock remains closed, do something else.");
+            System.out.println("The lock remains closed, do something else.");
         }
     }
 
@@ -149,7 +149,7 @@ public class ComboLock{
     
 
     //Lets have a method that checks which lock is closser to getting open, that will required our previus method to check the difference between two locks
-    public boolean isClose(ComboLock lock1, ComboLock lock2)
+    public static boolean isCloser(ComboLock lock1, ComboLock lock2)
     {
         return lock1.difference() <= lock2.difference();
     }
