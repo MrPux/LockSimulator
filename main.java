@@ -14,24 +14,30 @@ public class main {
         lock1.close();
 
         //test a .setValueNum method to unlock the lock
-        lock1.setValueNum(1, 3);
+        lock1.setValueNum(1, 2);
         lock1.setValueNum(2,4);
         lock1.setValueNum(3,7);
         lock1.open();
 
         //test a .open() method to open the lock
-        lock2.setValueNum(1,3);
+        lock2.setValueNum(1,2);
         lock2.setValueNum(2,4);
         lock2.setValueNum(3,6);
-        
+        System.out.println(lock2.isOpen() + "<--");
         //Test which out my two locks I created is closer to being solved.
         System.out.println(ComboLock.isCloser(lock1, lock2));
 
         //Test if an open & closed methods have an equal combination 
-
-        //Test if an open & open methods have equals combination
-
-        //Test to reset a combination for a lock
+        ComboLock lock3 = new ComboLock("246");
+        System.out.println(lock2.equals(lock3));
+        
+        lock3.setValueNum(1,2);
+        lock3.setValueNum(2, 4);
+        lock3.setValueNum(3, 6);
+        lock3.close();
+        System.out.println(lock2.equals(lock3));
+    
+        
     }
 
 }

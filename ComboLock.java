@@ -31,13 +31,13 @@ public class ComboLock{
     @Override
     public String toString()
     {
-        if(isOpen)
+        if(this.isOpen == true)
         {
-            return "Lock with combination " + currentCombination + " is open.";
+            return "Lock is open.";
         }
         else 
         {
-            return "lock with combination" + currentCombination + "is closed.";
+            return "lock is closed.";
         }
     }
 
@@ -45,13 +45,10 @@ public class ComboLock{
     public void resetCorrectCombination(String newCombination)
     {
         try{  
-            if(!isOpen)
+            if(this.isOpen == false)
             {
                 throw new IllegalArgumentException("Hey buddy, you cannot reset the combination while the lock is closed, try opening it first.");
-            }
-
-            if(isOpen)
-            {
+            }else{
                 this.correctCombination = newCombination;
                 this.currentCombination = newCombination;
             }
@@ -103,7 +100,7 @@ public class ComboLock{
             this.isOpen = true;
             System.out.println("The lock is now open!");
         }
-        if(!isOpen)
+        else
         {
             System.out.println("Failed to open the lock.");
         }
@@ -137,10 +134,9 @@ public class ComboLock{
     //Lets have our method that compares tow locks have the same combination attributes
     public boolean equals(ComboLock lock)
     {
-        if(!(lock instanceof ComboLock))
-        {
-            return false;
-        }
+        if(this == lock) return true;
+
+        if(!(lock instanceof ComboLock)) return false;
 
         ComboLock tempLock = (ComboLock) lock;
 
