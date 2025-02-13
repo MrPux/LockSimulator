@@ -63,7 +63,23 @@ public class ComboLock{
 
     }
     //Lets have a set combination method called setValueNum
+    public void setValueNum(int position, int newValue)
+    {
+        try{
+            if(!(position < 3 && position > 0 && newValue < 10 && newValue > 0))
+            {
+                throw new IllegalArgumentException("Hey buddy, invalid position or valu.");
+            }
+            char[] temp = currentCombination.toCharArray();
+            temp[position - 1] = (char) ('0' + newValue);
 
+            this.currentCombination = new String(temp);
+        }catch(IllegalArgumentException i)
+        {
+            System.err.println(i.getMessage());
+            return;
+        }
+    }
     //Lets also have our close method that will shut this class lock
 
     //Lets also have a way to open this class lock, with an open method
