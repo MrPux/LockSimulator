@@ -62,6 +62,7 @@ public class ComboLock{
         }
 
     }
+
     //Lets have a set combination method called setValueNum
     public void setValueNum(int position, int newValue)
     {
@@ -80,6 +81,7 @@ public class ComboLock{
             return;
         }
     }
+
     //Lets also have our close method that will shut this class lock
     public void close()
     {
@@ -106,9 +108,31 @@ public class ComboLock{
             System.out.println("Failed to open the lock.");
         }
     }
+
     //Lets have a method that returns a boolean if the class lock is open
+    public boolean isOpen()
+    {
+        return this.isOpen;
+    }
+
+    //Lets return the current combination
+    public String currentAttempt()
+    {
+        return currentCombination;
+    }
 
     //Lets have our method that compares tow locks have the same combination attributes
+    private int difference()
+    {
+        int totalDifference = 0;
+        for(int i = 0; i < 3; i++)
+        {
+            int correctDigit = correctCombination.charAt(i) - '0';
+            int currentDigit = currentCombination.charAt(i) - '0';
+            totalDifference += Math.abs(correctDigit - currentDigit);
+        }
+        return totalDifference;
+    }
 
     //Lets have a method that gives us the difference between the two locks current and correct combination
 
