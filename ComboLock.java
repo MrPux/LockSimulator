@@ -42,7 +42,26 @@ public class ComboLock{
     }
 
     //I will have a reset combination for lock 
+    public void resetCorrectCombination(String newCombination)
+    {
+        try{  
+            if(!isOpen)
+            {
+                throw new IllegalArgumentException("Hey buddy, you cannot reset the combination while the lock is closed, try opening it first.");
+            }
 
+            if(isOpen)
+            {
+                this.correctCombination = newCombination;
+                this.currentCombination = newCombination;
+            }
+        }catch(IllegalArgumentException i)
+        {
+            System.err.println(i.getMessage());
+            return;
+        }
+
+    }
     //Lets have a set combination method called setValueNum
 
     //Lets also have our close method that will shut this class lock
