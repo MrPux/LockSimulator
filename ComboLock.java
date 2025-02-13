@@ -81,9 +81,31 @@ public class ComboLock{
         }
     }
     //Lets also have our close method that will shut this class lock
+    public void close()
+    {
+        if(isOpen)
+        {
+            this.isOpen = false;
+        }
+        if(!isOpen)
+        {
+            System.out.println("he lock remains closed, do something else.");
+        }
+    }
 
     //Lets also have a way to open this class lock, with an open method
-
+    public void open()
+    {
+        if(currentCombination == correctCombination)
+        {
+            this.isOpen = true;
+            System.out.println("The lock is now open!");
+        }
+        if(!isOpen)
+        {
+            System.out.println("Failed to open the lock.");
+        }
+    }
     //Lets have a method that returns a boolean if the class lock is open
 
     //Lets have our method that compares tow locks have the same combination attributes
