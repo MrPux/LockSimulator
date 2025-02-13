@@ -121,7 +121,7 @@ public class ComboLock{
         return currentCombination;
     }
 
-    //Lets have our method that compares tow locks have the same combination attributes
+    //Lets have a method that gives us the difference between the two locks current and correct combination
     private int difference()
     {
         int totalDifference = 0;
@@ -134,8 +134,23 @@ public class ComboLock{
         return totalDifference;
     }
 
-    //Lets have a method that gives us the difference between the two locks current and correct combination
+    //Lets have our method that compares tow locks have the same combination attributes
+    public boolean equals(ComboLock lock)
+    {
+        if(!(lock instanceof ComboLock))
+        {
+            return false;
+        }
+
+        ComboLock tempLock = (ComboLock) lock;
+
+        return this.correctCombination.equals(tempLock.correctCombination) && this.currentCombination.equals(tempLock.currentCombination) && (this.isOpen == tempLock.isOpen);
+    }
+    
 
     //Lets have a method that checks which lock is closser to getting open, that will required our previus method to check the difference between two locks
-
+    public boolean isClose(ComboLock lock1, ComboLock lock2)
+    {
+        return lock1.difference() <= lock2.difference();
+    }
 }
