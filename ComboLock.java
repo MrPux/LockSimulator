@@ -26,6 +26,7 @@ public class ComboLock{
         //default open the lock
         this.isOpen = true;
     }
+    
     //Initialize the toString() method which will return the state of this class lock
 
 
