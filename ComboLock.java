@@ -31,18 +31,18 @@ public class ComboLock{
     @Override
     public String toString()
     {
-        if(this.isOpen == true)
+        if(isOpen)
         {
-            return "Lock is open.";
+            return "Lock open with combination " + this.currentCombination + " showing.";
         }
         else 
         {
-            return "lock is closed.";
+            return "Lock closed with combination " + this.currentCombination + " showing.";
         }
     }
 
     //I will have a reset combination for lock 
-    public void resetCorrectCombination(String newCombination)
+    public void resetCorrectCode(String newCombination)
     {
         try{  
             if(this.isOpen == false)
@@ -65,8 +65,8 @@ public class ComboLock{
     {
         try{
             if(!(position < 3 && position > 0 && newValue < 10 && newValue > 0))
-            {
-                throw new IllegalArgumentException("Hey buddy, invalid position or value.");
+            { 
+                throw new IllegalArgumentException("\nHey buddy, invalid position or value. \n");
             }
             char[] temp = currentCombination.toCharArray();
             temp[position - 1] = (char) ('0' + newValue);
@@ -88,21 +88,21 @@ public class ComboLock{
         }
         if(!isOpen)
         {
-            System.out.println("The lock remains closed, do something else.");
+            System.out.println("The lock with combination "+ this.currentCombination + " remains closed, do something else.");
         }
     }
 
     //Lets also have a way to open this class lock, with an open method
     public void open()
     {
-        if(currentCombination == correctCombination)
+        if(currentCombination.equals(correctCombination))
         {
             this.isOpen = true;
-            System.out.println("The lock is now open!");
+            System.out.println("The lock with combinaiton " + this.currentCombination + " is now open!");
         }
         else
         {
-            System.out.println("Failed to open the lock.");
+            System.out.println("Failed to open the lock with combination "+ this.currentCombination+".");
         }
     }
 

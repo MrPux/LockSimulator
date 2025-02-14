@@ -1,43 +1,40 @@
-// Class main
-public class main {
-    public static void main(String[] args){
-        //An instance object of a comboLock without lock combination passing arguments
-        ComboLock lock1 = new ComboLock();
-        //I will also test an instance object of comboLock with passing arguments that would be the lock combinations
-        ComboLock lock2 = new ComboLock("245");
-
-        //test the to instanceObject.toString() method
-        System.out.println(lock1.toString());
-        System.out.println(lock2.toString()); 
-
-        //test a .close() method to shut the lock
-        lock1.close();
-
-        //test a .setValueNum method to unlock the lock
-        lock1.setValueNum(1, 2);
-        lock1.setValueNum(2,4);
-        lock1.setValueNum(3,7);
-        lock1.open();
-
-        //test a .open() method to open the lock
-        lock2.setValueNum(1,2);
-        lock2.setValueNum(2,4);
-        lock2.setValueNum(3,6);
-        System.out.println(lock2.isOpen() + "<--");
-        //Test which out my two locks I created is closer to being solved.
-        System.out.println(ComboLock.isCloser(lock1, lock2));
-
-        //Test if an open & closed methods have an equal combination 
-        ComboLock lock3 = new ComboLock("246");
-        System.out.println(lock2.equals(lock3));
-        
-        lock3.setValueNum(1,2);
-        lock3.setValueNum(2, 4);
-        lock3.setValueNum(3, 6);
-        lock3.close();
-        System.out.println(lock2.equals(lock3));
-    
-        
+class main {
+    public static void main(String[] args) {
+    ComboLock firstTest = new ComboLock("123"); // Who uses such a combination for
+    // their luggage anyways?
+    System.out.println(firstTest);
+    firstTest.setValueNum(1, 4); // Set a wrong combo
+    firstTest.setValueNum(2, 5);
+    firstTest.setValueNum(3, 1);
+    System.out.println(firstTest);
+    firstTest.close();
+    System.out.println(firstTest);
+    firstTest.open(); // Fails
+    System.out.println(firstTest); // Same as before
+    firstTest.setValueNum(1, 1); // Set a correct combo
+    firstTest.setValueNum(2, 2);
+    firstTest.setValueNum(3, 3);
+    firstTest.open(); // Success!
+    System.out.println(firstTest); // Now open
+    firstTest.resetCorrectCode("321");
+    firstTest.close();
+    firstTest.open(); // Fails due to being 000
+    System.out.println(firstTest);
+    System.out.println(firstTest.isOpen());
+    System.out.println(firstTest.currentAttempt());
     }
-
-}
+    /*
+    Lock open with combination 123 showing
+    Lock open with combination 451 showing
+    Lock closed with combination 451 showing
+    Failed to open the lock
+    Lock closed with combination 451 showing
+    The lock is open with combination 123
+    Lock open with combination 123 showing
+    Failed to open the lock
+    Lock closed with combination 000 showing
+    false
+    000
+    */
+    }
+    
